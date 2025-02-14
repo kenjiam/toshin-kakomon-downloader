@@ -16,7 +16,7 @@
      ```
      を実行すれば準備は完了です．
 
-2. Windowsユーザーの方は，`toshin-kakomon-downloader.exe` を使うこともできます．
+2. ~~Windowsユーザーの方は，`toshin-kakomon-downloader.exe` を使うこともできます．~~
 
 ## 想定される要望・質問
 
