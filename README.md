@@ -7,7 +7,7 @@
 
 ## 
 
-1. Releaseタブにある `toshin-kakomon-downloader.zip` を展開して，`downloader.py` を実行してください．
+1. Releaseタブにある `toshin-kakomon-downloader.zip` を展開して，`download.py` を実行してください．
    + **Python 3.x** およびPythonライブラリ **BeautifulSoup4** が必要です．
 
      [Pythonのインストール](https://wiki.python.org/moin/BeginnersGuide/Download) 後，コマンドラインで

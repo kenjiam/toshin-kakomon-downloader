@@ -1,11 +1,22 @@
 import os
+import sys
+import importlib.util
+import importlib
 import requests
 from requests.auth import HTTPBasicAuth
 from bs4 import BeautifulSoup
 import re
 
+# PyInstaller の場合、展開ディレクトリ (sys._MEIPASS) を考慮
+if getattr(sys, 'frozen', False):
+    BASE_DIR = sys._MEIPASS
+else:
+    BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
+AUTH_FILE = os.path.join(BASE_DIR, "auth.py")
+
 # auth.pyが無ければ作成する
-if not os.path.exists("auth.py"):
+if not os.path.exists(AUTH_FILE) or os.path.getsize(AUTH_FILE) == 0:
     print("メールアドレスとパスワードを入力\n")
 
     while True:
@@ -22,14 +33,20 @@ if not os.path.exists("auth.py"):
             continue
         break
 
-    with open("auth.py", "w") as f:
+    with open(AUTH_FILE, "w") as f:
         f.write(f"USERNAME = '{username}'\n")
         f.write(f"PASSWORD = '{password}'\n")
 
     print("認証情報を保存しました\n")
 
-# auth.pyのUSERNAMEとPASSWORDを利用する
-import auth
+# importlib を使って動的に auth.py をインポート
+spec = importlib.util.spec_from_file_location("auth", AUTH_FILE)
+auth = importlib.util.module_from_spec(spec)
+spec.loader.exec_module(auth)
+
+# 変更が反映されていない可能性があるので再読み込み
+sys.modules["auth"] = auth
+auth = importlib.reload(auth)
 
 USERNAME = auth.USERNAME
 PASSWORD = auth.PASSWORD
