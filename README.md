@@ -7,15 +7,25 @@
 
 ## 要件
 
-Python 3.11
+Python 3
 
 ## インストール
 
-書きます. .whlがReleaseにあるのでインストールしてください
+1. [**Release**](https://github.com/amanokenzi/toshin-kakomon-downloader/releases) もしくは [**このリンク**](https://github.com/amanokenzi/toshin-kakomon-downloader/releases/latest/download/toshin-kakomon-downloader.whl) から`toshin-kakomon-downloader.whl` をダウンロードし，コマンドラインで次を実行します．
+
+2. コマンドライン（ターミナル）を開き、以下のコマンドを実行します：
+   ```shell
+   pip install .\toshin-kakomon-downloader.whl
+   ```
 
 ## 使い方
 
-書きます
+1. 過去問をダウンロードするときは，以下を実行するだけです：
+   ```
+   tkdl
+   ```
+
+2. 今後書きます
 
 ## 想定される要望・質問
 
@@ -30,17 +40,22 @@ Python 3.11
 
 1. pipパッケージ化．
 
-2. サブコマンドの追加
-   + `update`, `config`, `help` などのサブコマンドや `-d (ダウンロードしたいパス)` などのオプションを追加．
-     + `help [command]`, `config email [東進過去問データベースに登録したメールアドレス]`, `config path [デフォルトのダウンロードディレクトリ]`, などを追加．
+2. サブコマンドの追加：
+   + `config`, `help`, `update`, `search` などのサブコマンドや `-d (ダウンロードしたいパス)` などのオプションを追加：
+     + `help [command]`, `config email [東進過去問データベースに登録したメールアドレス]`, `config path [デフォルトのダウンロードディレクトリ]` や，
+     ```
+     $ tkdl search 京都
+     京都大学
+     虚と虚と
+     ```などを追加．
 
-3. 2004年以前に対応．
+1. 2004年以前に対応．
 
-4. 「東進過去問データベース」側の学部・学科の表記ブレを統一．
+2. 「東進過去問データベース」側の学部・学科の表記ブレを統一．
    - 例: 「医学科 前期」，「医 前期」など
 
-5. GUIの追加．
+3. GUIの追加．
 
-6. ローカルにダウンロードする代わりに，Google Driveや各種クラウドにアップロードする機能の追加．
+4. ローカルにダウンロードする代わりに，Google Driveや各種クラウドにアップロードする機能の追加．
 
-7. Webアプリ化？
+5. Webアプリ化？
