@@ -1,7 +1,9 @@
 **/__pycache__/**
 
-/auth.py
+**/config.toml
 
 /ダウンロード/**
 
 /releases/
+
+*.egg-info

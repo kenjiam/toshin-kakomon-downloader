@@ -5,18 +5,17 @@
 指定した大学・学部・学科・方式の過去問および解答を，年度別/科目別/またその両方にフォルダ分けしてダウンロードします．
 複数学部・学科の選択に対応しています．
 
-## 
+## 要件
 
-1. Releaseタブにある `toshin-kakomon-downloader.zip` を展開して，`download.py` を実行してください．
-   + **Python 3.x** およびPythonライブラリ **BeautifulSoup4** が必要です．
+Python 3.11
 
-     [Pythonのインストール](https://wiki.python.org/moin/BeginnersGuide/Download) 後，コマンドラインで
-     ```
-     pip install beautifulsoup4
-     ```
-     を実行すれば準備は完了です．
+## インストール
 
-2. ~~Windowsユーザーの方は，`toshin-kakomon-downloader.exe` を使うこともできます．~~
+書きます. .whlがReleaseにあるのでインストールしてください
+
+## 使い方
+
+書きます
 
 ## 想定される要望・質問
 

@@ -1,16 +1,19 @@
 import os
 import requests
 from requests.auth import HTTPBasicAuth
-import random
 import itertools
 from bs4 import BeautifulSoup
 import re
+import toml
 
-# auth.pyのUSERNAMEとPASSWORDを利用する
-import auth
+# toml モジュールを使って設定ファイルを読み込む
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+CONFIG_FILE = os.path.join(BASE_DIR, "config.toml")
 
-USERNAME = auth.USERNAME
-PASSWORD = auth.PASSWORD
+config = toml.load(CONFIG_FILE)
+
+USERNAME = config["auth"]["username"]
+PASSWORD = config["auth"]["password"]
 
 # URLのベース部分
 base_url = "https://www.toshin-kakomon.com/kakomon_db/ex/menu/"
