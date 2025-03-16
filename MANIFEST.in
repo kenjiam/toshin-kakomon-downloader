@@ -1,5 +1,2 @@
-# tkdl フォルダ内の .py 以外の全ファイルを含める
-recursive-include tkdl *.txt
-
-# ルートディレクトリにある特定のファイルを含める場合
+recursive-include tkdl *.csv
 include LICENSE

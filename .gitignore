@@ -1,9 +1,13 @@
-**/__pycache__/**
+**/__pycache__
 
-**/config.toml
+**config**
 
 /ダウンロード/**
 
 /releases/
 
 *.egg-info
+
+**/test
+
+build/
