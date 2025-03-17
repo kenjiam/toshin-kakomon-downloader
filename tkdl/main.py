@@ -1,12 +1,14 @@
+import argparse
+import csv
+import itertools
 import os
 import re
-import itertools
+import textwrap
+
 import requests
 import toml
-import csv
 from bs4 import BeautifulSoup
 from requests.auth import HTTPBasicAuth
-import argparse
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
@@ -396,31 +398,39 @@ def download():
     print("完了しました")
 
 def main():
-    parser = argparse.ArgumentParser(description="tkdl: toshin-kakomon-downloader")
-    subparsers = parser.add_subparsers(dest="command")
-    args = parser.parse_args()
+    class HelpFormatterWithoutOptions(argparse.RawTextHelpFormatter):
+        def _format_action(self, action):
+            if action.option_strings:
+                return ""  # オプションの説明を非表示にする
+            return super()._format_action(action)
+    parser = argparse.ArgumentParser(
+        epilog=textwrap.dedent("""\
+        特定のコマンドの詳細を読むには 'tkdl <command> -h' を実行してください。
+        """),
+        formatter_class=HelpFormatterWithoutOptions,
+        usage="tkdl [-h | --help] <コマンド> [<引数>]"
+    )
+    subparsers = parser.add_subparsers(dest="command", title="コマンド")
 
     # config
     config_parser = subparsers.add_parser("config", help="設定を変更")
-    config_parser.add_argument("key", choices=["email", "password", "dlpath"], nargs="?", help="変更する設定")
-    config_parser.add_argument("value", nargs="?")
-    # update
-    subparsers.add_parser("update", help="大学リストを更新")
-    # help
-    subparsers.add_parser("help", help="ヘルプを表示")
+    config_parser.add_argument("key", choices=["email", "password", "dlpath"], nargs="?", help="変更する設定項目")
+    config_parser.add_argument("value", nargs="?", help="新しい設定値")
     # search
     search_parser = subparsers.add_parser("search", help="検索を実行")
     search_parser.add_argument("query", nargs="?", default=None, help="検索する文字列")
+    # update
+    subparsers.add_parser("update", help="大学リストを更新")
+
+    args = parser.parse_args()
 
     if args.command == "config":
         config(args.key, args.value)
-    elif args.command == "update":
-        update()
-    elif args.command == "help":
-        parser.print_help()
     elif args.command == "search":
         for result in search(args.query):
             print(result)
+    elif args.command == "update":
+        update()
     else:
         download()
 
